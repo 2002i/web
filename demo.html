@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@3"></script>
+    <link rel="icon" href="./static/img/favicon.ico">
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/element-plus/dist/index.css">
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-plus"></script>
+    <title>demo</title>
+  </head>
+
+<body>
+    <div id="app">
+        <timeline-component></timeline-component>
+    </div>
+
+    <!-- Include Vue.js and Element Plus JavaScript via CDN -->
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://unpkg.com/element-plus@next"></script>
+
+    <script>
+        const app = Vue.createApp({});
+
+        app.component('timeline-component', {
+            template: `
+                <el-timeline style="max-width: 600px">
+                    <el-timeline-item
+                        v-for="(activity, index) in activities"
+                        :key="index"
+                        :icon="activity.icon"
+                        :type="activity.type"
+                        :color="activity.color"
+                        :size="activity.size"
+                        :hollow="activity.hollow"
+                        :timestamp="activity.timestamp"
+                    >
+                        {{ activity.content }}
+                    </el-timeline-item>
+                </el-timeline>
+            `,
+            setup() {
+                const activities = [
+                    {
+                        content: '更新日志',
+                        timestamp: '2018-04-12 20:46',
+                        size: 'large',
+                        type: 'primary',
+                        icon: 'el-icon-more',
+                    },
+                    {
+                        content: '1.0.0版本发布',
+                        timestamp: '2018-04-03 20:46',
+                        color: '#0bbd87',
+                    },
+                    {
+                        content: '2.0.0版本发布',
+                        timestamp: '2018-04-03 20:46',
+                        color: '#0bbd87',
+                    },
+                    {
+                        content: '3.0.0版本发布',
+                        timestamp: '2018-04-03 20:46',
+                        color: '#0bbd87',
+                    },
+                    
+                    // 其他活动数据...
+                ];
+                return { activities };
+            },
+        });
+
+        app.use(ElementPlus);
+        app.mount('#app');
+    </script>
+</body>
+
+</html>
